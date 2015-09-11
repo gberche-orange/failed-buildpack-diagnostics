@@ -48,6 +48,7 @@ for BUILDPACK in $(cat $1/.buildpacks); do
     echo "executing $dir/bin/detect $1"
     echo "$dir/bin/detect content is:"
     cat $dir/bin/detect
+    echo
 
     framework=$($dir/bin/detect $1)
 
