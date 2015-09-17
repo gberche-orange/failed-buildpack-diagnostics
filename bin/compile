@@ -71,7 +71,6 @@ for BUILDPACK in $(cat $1/.buildpacks); do
       fi
     else
       echo "=====> exit status was: $? compile failed"
-      framework="errored, exit status was: $? executing $dir/bin/compile $1 $2 $3"
     fi
   fi
 done
