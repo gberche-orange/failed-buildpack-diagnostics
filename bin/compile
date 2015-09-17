@@ -46,8 +46,8 @@ for BUILDPACK in $(cat $1/.buildpacks); do
     # we'll get errors later if these are needed and don't exist
     chmod -f +x $dir/bin/{detect,compile,release} || true
 
-    echo "executing $dir/bin/detect $1"
-    echo "$dir/bin/detect content is:"
+    echo "=====> executing $dir/bin/detect $1"
+    echo "       $dir/bin/detect content is:"
     cat $dir/bin/detect
     echo
 
@@ -67,7 +67,12 @@ for BUILDPACK in $(cat $1/.buildpacks); do
       fi
 
       if [ -x $dir/bin/release ]; then
+        echo "=====> executing $dir/bin/release $1"
+        echo "       $dir/bin/release content is:"
+        cat $dir/bin/release
         $dir/bin/release $1 > $1/last_pack_release.out
+        echo "       release command result is:"
+        cat $1/last_pack_release.out
       fi
     else
       echo "=====> exit status was: $? detect failed"
