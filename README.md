@@ -5,14 +5,14 @@ An adaptation of [heroku-buildpack-multi](https://github.com/ddollar/heroku-buil
 
 
 ## Usage
-
-    $ rm -rf single_file_dir/; mkdir single_file_dir; cd single_file_dir; echo "hello.txt" > index.txt; 
-    $ echo " https://github.com/gberche-orange/sample_invalid_buildpack" > .buildpacks; echo >> .buildpacks; cat .buildpacks; 
-    $ cf push custom-buildpack  -b https://github.com/gberche-orange/heroku-buildpack-multi.git#verbose-dont-fail-on-errors
-     https://github.com/gberche-orange/sample_invalid_buildpack
+    # Initialize dummy content if needed
+    $ rm -rf single_file_dir/; mkdir single_file_dir; cd single_file_dir; echo "hello.txt" > index.txt;
     
-    Stopping app custom-buildpack in org orange / space gberche as gberche...
-    OK
+    # reference the list of faulty buildpack(s) you'd like to get more traces from
+    $ echo "https://github.com/gberche-orange/sample_invalid_buildpack" > .buildpacks;
+      
+    $ cf push custom-buildpack  -b https://github.com/gberche-orange/failed-buildpack-diagnostics.git
+    
     Updating app custom-buildpack in org orange / space gberche as gberche...
     OK
     
@@ -49,7 +49,7 @@ An adaptation of [heroku-buildpack-multi](https://github.com/ddollar/heroku-buil
     0 of 1 instances running, 1 down
 
 
-## Sample normal execution without traces in v214
+## Sample normal faulty execution lacking diagnostics in v214
 
 
     $ mkdir single_file_dir; cd single_file_dir; echo "hello.txt" > index.txt; 
