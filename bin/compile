@@ -70,11 +70,17 @@ for BUILDPACK in $(cat $1/.buildpacks); do
         $dir/bin/release $1 > $1/last_pack_release.out
       fi
     else
-      echo "exit status was: $?"
+      echo "=====> exit status was: $? compile failed"
       framework="errored, exit status was: $? executing $dir/bin/compile $1 $2 $3"
     fi
   fi
 done
+
+if [ "$framework" == "" ]; then
+  echo "=====> no sub buildpack succesfully compiled, exiting with error"
+  sleep 15
+  exit 1
+fi
 
 if [ -e $1/last_pack_release.out ]; then
   echo "Using release configuration from last framework ($framework)."
