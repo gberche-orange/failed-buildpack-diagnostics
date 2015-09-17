@@ -70,7 +70,7 @@ for BUILDPACK in $(cat $1/.buildpacks); do
         $dir/bin/release $1 > $1/last_pack_release.out
       fi
     else
-      echo "=====> exit status was: $? compile failed"
+      echo "=====> exit status was: $? detect failed"
     fi
   fi
 done
