@@ -81,7 +81,7 @@ for BUILDPACK in $(cat $1/.buildpacks); do
 done
 
 if [ "$framework" == "" ]; then
-  echo "=====> no sub buildpack succesfully compiled, exiting with error"
+  echo "=====> no sub buildpack successfully compiled, exiting with error"
   sleep 15
   exit 1
 fi
