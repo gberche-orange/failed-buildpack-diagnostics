@@ -30,7 +30,7 @@ for BUILDPACK in $(cat $1/.buildpacks); do
       mkdir -p "$dir"
       curl -s "$url" | tar xvz -C "$dir"
     else
-      echo "=====> cloning repo with "git clone $url $dir"
+      echo "=====> cloning repo with git clone $url $dir"
       git clone $url $dir
       if [ -f "$dir/.gitmodules" ]; then
         echo "=====> Detected git submodules. Initializing..."
