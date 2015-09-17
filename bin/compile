@@ -68,10 +68,10 @@ for BUILDPACK in $(cat $1/.buildpacks); do
 
       if [ -x $dir/bin/release ]; then
         echo "=====> executing $dir/bin/release $1"
-        echo "       $dir/bin/release content is (expecting YAML hash):"
+        echo "       $dir/bin/release content is:"
         cat $dir/bin/release
         $dir/bin/release $1 > $1/last_pack_release.out
-        echo "       release command result is:"
+        echo "       release command result (expecting YAML hash) is:"
         cat $1/last_pack_release.out
       fi
     else
