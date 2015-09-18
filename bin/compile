@@ -43,7 +43,8 @@ for BUILDPACK in $(cat $1/.buildpacks); do
       git checkout $branch
     fi
 
-    echo "=====> checking permissions and potentially fixing them"
+    echo "=====> checking exec permissions and potentially fixing them"
+    echo "       (CF might not be fixing missing exec permissions)"
     ls -al $dir/bin/{detect,compile,release}
 
     # we'll get errors later if these are needed and don't exist
