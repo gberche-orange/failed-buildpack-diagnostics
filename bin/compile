@@ -88,7 +88,8 @@ done
 
 if [ "$framework" == "" ]; then
   echo "=====> no sub buildpack successfully compiled, exiting with error"
-  sleep 15
+  echo "       (sleeping a bit to ensure logs don't get truncated)"
+  sleep 5
   exit 1
 else
   echo "=====> final detected framework is: $framework"
