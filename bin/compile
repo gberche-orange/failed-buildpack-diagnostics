@@ -80,7 +80,7 @@ for BUILDPACK in $(cat $1/.buildpacks); do
     else
       echo "=====> exit status was: $? detect failed, compile skipped (buildpack would fail unless targetted explicit"
       echo "       (buildpack would fail unless targetted explicitly with cf -b [...]"
-      echo "       which would skip detect invocation"
+      echo "        which would skip detect invocation)"
       unset framework
     fi
   fi
