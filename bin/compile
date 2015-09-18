@@ -43,6 +43,9 @@ for BUILDPACK in $(cat $1/.buildpacks); do
       git checkout $branch
     fi
 
+    echo "=====> checking permissions and potentially fixing them"
+    ls -al $dir/bin/{detect,compile,release}
+
     # we'll get errors later if these are needed and don't exist
     chmod -f +x $dir/bin/{detect,compile,release} || true
 
@@ -71,7 +74,7 @@ for BUILDPACK in $(cat $1/.buildpacks); do
         echo "       $dir/bin/release content is:"
         cat $dir/bin/release
         $dir/bin/release $1 > $1/last_pack_release.out
-        echo "       release command result (expecting YAML hash) is:"
+        echo "=====> release command result (expecting YAML hash) is:"
         cat $1/last_pack_release.out
       fi
     else
@@ -84,8 +87,10 @@ if [ "$framework" == "" ]; then
   echo "=====> no sub buildpack successfully compiled, exiting with error"
   sleep 15
   exit 1
+else
+  echo "=====> final detected framework is: $framework"
 fi
 
 if [ -e $1/last_pack_release.out ]; then
-  echo "Using release configuration from last framework ($framework)."
+  echo "=====> Using release configuration from last framework ($framework)."
 fi
